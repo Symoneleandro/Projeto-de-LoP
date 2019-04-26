@@ -4,13 +4,17 @@
         Lucas Matheus Silva da Penha  - Subturma B
         Etapa 1ª e 2ª
 */
+
 let y = 100;
 let x = 100;
+
 function setup() {
    
   createCanvas(400, 400);
   
+
   createCanvas(512, 512);
+
   fill(50, 55,100);
 }
  
@@ -33,12 +37,7 @@ function draw( ) {
   }
   
   ellipse(x, y, 75, 55);
-  
-if(x>512 )
-  x=0;
-if(y>512)
-  y=0;
-  
   rect(200, 250, 55, 55);
- }
+ 
   
+}
