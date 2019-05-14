@@ -1,0 +1,61 @@
+/* 
+    Equipe: 
+        Symone Leandro de Castro - Subturma C (Líder) 
+        Lucas Matheus Silva da Penha  - Subturma B
+        Etapa 6
+*/
+
+let y = 100;
+let x = 100;
+let xd = 0;
+let yd = 0;
+let estadoDisparo = false;
+
+
+function setup() {
+  createCanvas(400, 400);
+  createCanvas(512, 512);
+  fill(50, 55,100);
+ 
+}
+function draw( ) {
+  
+   background(400,500,200);
+  rect(200, 250, 60, 60);
+  if(dist(200,250, x, y) <= 20 +30){
+     x =10;
+     y=10;
+     }
+  
+  if (keyIsDown(LEFT_ARROW)) {
+    x -= 10;
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    x += 10;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    y -= 10;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    y += 10;
+  }
+  ellipse(x, y, 80, 55);
+  y = y + 1;
+if(x>512 )
+  x=0;
+if(y>512)
+  y=0;
+  if( keyIsDown(CONTROL) &&  estadoDisparo == false){
+  xd = x;
+  yd = y;
+  estadoDisparo = true;
+  }
+  if(estadoDisparo == true){
+  ellipse(xd, yd, 4, 4);
+  yd = yd - 10;
+    if(yd < 0){
+      estadoDisparo = false;
+    }
+  }
+  rect(200, 250, 55, 55);
+}
