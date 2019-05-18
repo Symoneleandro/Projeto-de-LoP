@@ -10,6 +10,10 @@ let x = 100;
 let xd = 0;
 let yd = 0;
 let estadoDisparo = false;
+var vidas = 5
+var pontos = 0;
+var dificuldade = 1;
+
 
 
 function setup() {
@@ -21,10 +25,16 @@ function setup() {
 function draw( ) {
   
    background(400,500,200);
+  fill(0, 102, 153);
+  textSize(18);
+  text("Vidas "+ vidas , 10, 30);
+  text("Pontos "+ pontos , 200, 30);
+  text("Dificuldade "+ dificuldade , 400, 30);
+
   rect(200, 250, 60, 60);
-  if(dist(200,250, x, y) <= 20 +30){
-     x =10;
-     y=10;
+  if(dist(200,250, x, y) <= 30 +30){
+     x =50;
+     y=30;
      }
   
   if (keyIsDown(LEFT_ARROW)) {
@@ -57,5 +67,5 @@ if(y>512)
       estadoDisparo = false;
     }
   }
-  rect(200, 250, 55, 55);
+  
 }
