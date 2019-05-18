@@ -28,7 +28,12 @@ function draw( ) {
   fill(0, 102, 153);
   textSize(18);
   text("Vidas "+ vidas , 10, 30);
+  
   text("Pontos "+ pontos , 200, 30);
+  if( (200,250, x, y) == 30 +30) {
+  pontos = pontos -1
+  }
+  
   text("Dificuldade "+ dificuldade , 400, 30);
 
   rect(200, 250, 60, 60);
@@ -69,3 +74,4 @@ if(y>512)
   }
   
 }
+
