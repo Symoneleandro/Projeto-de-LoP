@@ -17,7 +17,7 @@ let RaioP = 25;
 var vida = 3; 
 var pontos = 0;
 var nível = 1;
-var barreiraDePontos = 500;
+var barreiraDePontos = 20;
 
 function setup() {
   createCanvas(400, 400);
