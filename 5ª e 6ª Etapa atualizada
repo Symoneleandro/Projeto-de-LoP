@@ -1,3 +1,10 @@
+/* 
+    Equipe: 
+        Symone Leandro de Castro - Subturma C (Líder) 
+        Lucas Matheus Silva da Penha  - Subturma B
+        Etapa 5 e 6
+*/
+
 let y = 100;
 let x = 100;
 let xd = 0;
@@ -10,8 +17,7 @@ let RaioP = 25;
 var vida = 3; 
 var pontos = 0;
 var nível = 1;
-var barreiraDePontos = 20;
-var barreiraDeVida = 1
+var barreiraDePontos = 500;
 
 function setup() {
   createCanvas(400, 400);
@@ -22,12 +28,18 @@ function draw( ) {
    background(400,500,200);
    fill(0, 102, 153); 
    textSize(18);
-   text('Vidas '+ vida, 10, 30);
-   text('Pontos '+ pontos, 200, 30); 
-   text('Nível '+ nível, 400, 30);
+   text('Vidas: '+ vida, 10, 30);
+   text('Pontos: '+ pontos, 200, 30); 
+  if(dist(x, y, xo, yo) < RaioO + RaioP){
+    pontos= pontos - 5;
+  }
+   text('Nível: '+ nível, 400, 30);
+   // incremento de pontos 
+  pontos = pontos + 0; 
+
   if (pontos>barreiraDePontos) {
     nível=nível+1;
-    barreiraDePontos = barreiraDePontos + 20; 
+    barreiraDePontos = barreiraDePontos + 1000; 
   }
   
   if (keyIsDown(LEFT_ARROW)) {
