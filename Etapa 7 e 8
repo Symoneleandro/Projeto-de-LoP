@@ -1,0 +1,95 @@
+/* 
+    Equipe: 
+        Symone Leandro de Castro - Subturma C (Líder) 
+        Lucas Matheus Silva da Penha  - Subturma B
+        Etapa 7 e 8
+*/
+
+let y = 100;
+let x = 100;
+let xd = 0;
+let yd = 0;
+let xo = 240;
+let yo = 240;
+let estadoDisparo = false;
+let RaioO = 30;
+let RaioP = 25;
+var vida = 3; 
+var pontos = 0;
+var nível = 1;
+var barreiraDePontos = 20;
+var vxo = [];
+var vyo = [];
+var quantidadeobjeto = 5;
+
+function setup() {
+
+  createCanvas(400, 400);
+  createCanvas(512, 512);
+  fill(50, 55,100);
+  for(var i = 0; i<quantidadeobjeto; i++){
+  vxo[i] = random( 0 ,500);
+  vyo[i] = random( 0 ,500);
+  } 
+
+
+}
+function draw( ) {
+   background(400,500,200);
+   fill(0, 102, 153); 
+   textSize(18);
+   text('Vidas: '+ vida, 10, 30);
+   text('Pontos: '+ pontos, 200, 30); 
+   text('Nível: '+ nível, 400, 30);
+    
+  if (pontos>barreiraDePontos) {
+    nível=nível+1;
+    barreiraDePontos = barreiraDePontos + 20; 
+  }
+  
+  if (keyIsDown(LEFT_ARROW)) {
+    x -= 10;
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    x += 10;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    y -= 10;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    y += 10;
+  }
+ ellipse(x, y, 2*RaioO,2*RaioP );
+  y = y + 0.1;
+if(x>512 )
+  x=0;
+if(y>512)
+  y=0;
+  if( keyIsDown(CONTROL) &&  estadoDisparo == false){
+  xd = x;
+  yd = y;
+  estadoDisparo = true;
+  }
+  if(estadoDisparo == true){
+  ellipse(xd, yd, 4, 4);
+  yd = yd - 10;
+    if(yd < 0){
+      estadoDisparo = false;
+    } 
+  }
+  ellipse(xo, yo, 90, 90)
+  if(dist(x, y, xo, yo) < RaioO + RaioP){
+    pontos = pontos - 1
+    x = 100
+    y = 100
+}
+ if(dist(xd, yd, xo, yo) < RaioO + RaioP){
+  pontos =  pontos  + 1
+   xd = 0;
+   yd = 0;
+}
+   for(i = 0; i< quantidadeobjeto; i++){
+     fill(100)
+    ellipse(vxo[i], vyo[i], 40, 40)
+   }
+}
