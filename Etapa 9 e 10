@@ -1,0 +1,252 @@
+/* 
+    Equipe: 
+        Symone Leandro de Castro - Subturma C (Líder) 
+        Lucas Matheus Silva da Penha  - Subturma B
+        Etapa 9 e 10
+*/
+
+let y = 440;
+var v = 1;
+let x = 250;
+let xd = 0;
+let yd = 0;
+let estadoDisparo = false;
+let RaioO = 30;
+let RaioP = 25;
+var vida = 3;
+var pontos = 0;
+var nível = 1;
+var barreiraDePontos = 10;
+var vxo = [];
+var vyo = [];
+var velo = []
+var quantidadeobjeto = 5;
+let jogadorgoimg;
+let Inimigoimg;
+var tela = 1; 
+var tempo = 0;
+
+
+function preload() {
+  jogadorgoimg = loadImage('jogador22.png');
+  inimigogoimg = loadImage('oie_transparent.png')
+}
+function setup() {
+  createCanvas(512, 512);
+  fill(50, 55, 100);
+  //posição dos objetos
+  for (var i = 0; i < quantidadeobjeto; i++) {
+    vxo[i] = random(0, 500);
+    vyo[i] = random(-1000,0);
+    velo[i] = 1
+  }
+}
+
+function draw() {
+  
+   if ( tela == 1) {
+    background(0);
+    textSize(32); 
+    fill(135,206,235);
+     textFont('Georgia')
+    text("   Que comece a diversão", 60, 200);
+     text("  Aperte Enter", 150, 300)
+    if (keyIsDown(ENTER) ) {
+       tela = 2;  
+    } 
+}
+  if(tela==2){
+     tempo++;
+  background('#222222');
+    fill(0, 102, 153);
+    textSize(18);
+    text('Vidas: ' + vida, 10, 30);
+    text('Pontos: ' + pontos, 250, 30);
+    text('Nível: '+ nível, 120,30) 
+    text('Tempo: ' +(Math.floor(tempo/30)), 400, 30);
+    // pontuação, nível e vida 
+    if (pontos > barreiraDePontos) {// nível 
+      nível = nível + 1;
+      vida =vida +1; 
+      barreiraDePontos = barreiraDePontos + 10;
+    }
+    
+    
+      
+   
+  
+  //So perde vida, quando chega a -5 pontos.
+    
+  image(jogadorgoimg, x, y)
+  imageMode(CENTER)
+  for (i = 0; i < quantidadeobjeto; i++) {
+    vyo[i] = vyo[i] + velo[i]
+    //inimigos caindo vertical
+    if (vyo[i] >= 512) {
+      velo[i] = velo[i] * -1
+    }
+    if (vyo[i] <= 0) {
+      velo[i] = velo[i] * -1
+      circle(vxo[i],vyo[i],20,20)
+      vyo[i] = + 1
+    }
+    image(inimigogoimg, vxo[i], vyo[i])
+  }
+    
+    
+    if(nível ==2){//aumentar o nível de dificuldade 
+      for (i = 0; i < quantidadeobjeto; i++) {
+    vyo[i] = vyo[i] + velo[i]
+    //inimigos caindo vertical
+    if (vyo[i] >= 512) {
+      velo[i] = velo[i] * -1
+    }
+    if (vyo[i] <= 0) {
+      velo[i] = velo[i] * -1
+      circle(vxo[i],vyo[i],20,20)
+      vyo[i] = + 1
+    }
+    image(inimigogoimg, vxo[i], vyo[i])
+  }
+    }
+    
+    if(nível ==3){//aumentar o nível de dificuldade 
+      for (i = 0; i < quantidadeobjeto; i++) {
+    vyo[i] = vyo[i] + velo[i]
+    //inimigos caindo vertical
+    if (vyo[i] >= 512) {
+      velo[i] = velo[i] * -1
+    }
+    if (vyo[i] <= 0) {
+      velo[i] = velo[i] * -1
+      circle(vxo[i],vyo[i],20,20)
+      vyo[i] = + 1
+    }
+    image(inimigogoimg, vxo[i], vyo[i])
+  }
+    }
+    
+    if(nível ==4){//aumentar o nível de dificuldade 
+      for (i = 0; i < quantidadeobjeto; i++) {
+    vyo[i] = vyo[i] + velo[i]
+    //inimigos caindo vertical
+    if (vyo[i] >= 512) {
+      velo[i] = velo[i] * -1
+    }
+    if (vyo[i] <= 0) {
+      velo[i] = velo[i] * -1
+      circle(vxo[i],vyo[i],20,20)
+      vyo[i] = + 1
+    }
+    image(inimigogoimg, vxo[i], vyo[i])
+  }
+    }
+
+    if(nível ==5){//aumentar o nível de dificuldade 
+      for (i = 0; i < quantidadeobjeto; i++) {
+    vyo[i] = vyo[i] + velo[i]
+    //inimigos caindo vertical
+    if (vyo[i] >= 512) {
+      velo[i] = velo[i] * -1
+    }
+    if (vyo[i] <= 0) {
+      velo[i] = velo[i] * -1
+      circle(vxo[i],vyo[i],20,20)
+      vyo[i] = + 1
+    }
+    image(inimigogoimg, vxo[i], vyo[i])
+  }
+    }
+    
+  if (keyIsDown(LEFT_ARROW)) {
+    x -= 10
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    x += 10;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    y -= 10;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    y += 10;
+  }
+  //ellipse(x, y, 2*RaioO,2*RaioP );
+  // ellipse do jogador
+  y = y + 0.5;
+  if (x > 512)
+    x = 0;
+  if (y > 512)
+    y = 0;
+  if (y < 0) {
+    y = 512
+  }
+  if (x < 0) {
+    x = 512
+    //movimentos na vertical we horizontal do jogador
+  }
+  if (keyIsDown(CONTROL) && estadoDisparo == false) {
+    xd = x;
+    yd = y;
+    estadoDisparo = true;
+  }
+  if (estadoDisparo == true) {
+    fill(0, 0, 255)
+    ellipse(xd, yd, 10, 10);
+    // ellipse do disparo
+    yd = yd - 10;
+    if (yd < 0) {
+      estadoDisparo = false;
+    }
+  }
+  for (i = 0; i < quantidadeobjeto; i++) {
+    fill(100)
+    //ellipse dos obstáculos
+    //ellipse(vxo[i], vyo[i], 40, 40) 
+    if (dist(x, y, vxo[i], vyo[i]) < RaioO + RaioP) {
+      vida = vida - 1
+      x = 60
+      y = 60
+    }
+    //ellipse caindo
+    if (dist(xd, yd, vxo[i], vyo[i]) < RaioO + RaioP) {
+      pontos = pontos + 1
+      xd = 0;
+      yd = 0;
+      vxo[i] = random(0, 500);
+      vyo[i] = random(0, 500);
+    }
+     if(vida ==0){
+       tela=3
+     }
+    if(vida ==5){
+      tela =4
+    }
+  }
+  if ( tela == 3) {
+    background(0);
+    textSize(32); 
+    fill(135,206,235);
+    textFont('Georgia')
+    text("GAME OVER", 150, 200);
+  if (keyIsDown(32) ) {
+       tela = 1;
+    } 
+  }
+}
+  if ( tela == 4) {
+    background(0);
+    textSize(32); 
+    fill(135,206,235);
+    textFont('Georgia')
+    text("Congratulations !!!", 140, 300);
+  }
+   if (keyIsDown(32) ) {
+       tela = 1;
+       tempo = 0
+       pontos = 0
+       nivel = 1
+       vida = 3
+       y = 440;
+       x = 250;
+    } 
+}
